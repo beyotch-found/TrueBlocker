@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transaction Data Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      max-width: 400px;
+      width: 100%;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    input, textarea, button {
+      margin-top: 5px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      margin-top: 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .output {
+      margin-top: 20px;
+      background-color: #f1f1f1;
+      padding: 15px;
+      border-radius: 8px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Transaction Details</h2>
+    <form id="transactionForm">
+      <label for="location">Location</label>
+      <input type="text" id="location" placeholder="Enter your location" required>
+
+      <label for="upiId">Recipient UPI ID</label>
+      <input type="text" id="upiId" placeholder="Enter UPI ID" required>
+
+      <label for="bankDetails">Bank Details</label>
+      <input type="text" id="bankDetails" placeholder="Enter bank details" required>
+
+      <label for="time">Time of Transaction</label>
+      <input type="datetime-local" id="time" required>
+
+      <label for="statements">Previous Bank Statements</label>
+      <textarea id="statements" placeholder="Enter previous bank statements" rows="4"></textarea>
+
+      <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <div id="output" class="output" style="display: none;"></div>
+  </div>
+
+  <script>
+    function submitForm() {
+      // Collect form data
+      const location = document.getElementById('location').value;
+      const upiId = document.getElementById('upiId').value;
+      const bankDetails = document.getElementById('bankDetails').value;
+      const time = document.getElementById('time').value;
+      const statements = document.getElementById('statements').value;
+
+      // Display the output
+      const outputDiv = document.getElementById('output');
+      outputDiv.style.display = 'block';
+      outputDiv.innerHTML = `
+        <h3>Transaction Summary</h3>
+        <p><strong>Location:</strong> ${location}</p>
+        <p><strong>Recipient UPI ID:</strong> ${upiId}</p>
+        <p><strong>Bank Details:</strong> ${bankDetails}</p>
+        <p><strong>Time of Transaction:</strong> ${time}</p>
+        <p><strong>Previous Bank Statements:</strong></p>
+        <pre>${statements}</pre>
+      `;
+    }
+  </script>
+</body>
+</html>
